@@ -37,15 +37,35 @@ export function Footer({ isLoggedIn }: Props) {
               </div>
               <div className="space-y-2.5">
                 <p className="font-medium text-foreground">Data</p>
-                <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" className="block hover:text-foreground transition-colors">
+                <a
+                  href="https://www.themoviedb.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block hover:text-foreground transition-colors"
+                >
                   Powered by TMDB
                 </a>
               </div>
             </div>
           </div>
+
           <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
             <span>© {new Date().getFullYear()} Mindcrafted Stream. All rights reserved.</span>
-            <span>Free forever · No ads · No tracking</span>
+            <div className="flex items-center gap-4">
+              <span>Free forever · No ads · No tracking</span>
+              <span className="hidden sm:inline text-border">·</span>
+              <span>
+                Developed by{" "}
+                <a
+                  href="https://github.com/faustine-van"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors underline underline-offset-2 decoration-border hover:decoration-foreground"
+                >
+                  Faustine
+                </a>
+              </span>
+            </div>
           </div>
         </ScrollReveal>
       </div>

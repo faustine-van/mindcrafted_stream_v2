@@ -9,6 +9,7 @@ import { SectionHeader } from "./components/SectionHeader";
 import { DiscoverItem, DiscoverPageData, MediaTab } from "./types/discover";
 import { GenreLabel, GENRES } from "./constants/genres";
 import { RowSkeleton } from "./components/helpers";
+import { Footer } from "@/app/components/Footer";
 
 
 
@@ -321,6 +322,8 @@ export function DiscoverClient({
           </div>
         </section>
       )}
+
+    <Footer isLoggedIn={isLoggedIn} />
 
     </div>
   );
