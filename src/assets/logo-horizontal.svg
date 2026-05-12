@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64">
+  <defs>
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon mark -->
+  <circle cx="32" cy="32" r="30" fill="url(#ring-grad)" />
+  <polygon points="26,20 26,44 46,32" fill="white" />
+  <!-- Wordmark -->
+  <text x="76" y="24" font-family="'Cabinet Grotesk', 'Inter', sans-serif" font-size="17" font-weight="800" fill="#1A1A1A" letter-spacing="-0.5">Mindcrafted</text>
+  <text x="76" y="46" font-family="'Cabinet Grotesk', 'Inter', sans-serif" font-size="13" font-weight="400" fill="#7C3AED" letter-spacing="2.5">STREAM</text>
+</svg>
