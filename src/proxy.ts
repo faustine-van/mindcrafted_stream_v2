@@ -56,6 +56,14 @@ function buildSupabaseClient(request: NextRequest) {
   return { supabase, get response() { return response } }
 }
 
+// Only allow safe internal relative paths for the `next` redirect param
+const SAFE_REDIRECT_PATH = /^\/[a-zA-Z0-9\-\/]*$/
+
+function sanitizeNextParam(raw: string | null): string {
+  if (!raw) return '/watchlist'
+  return SAFE_REDIRECT_PATH.test(raw) ? raw : '/watchlist'
+}
+
 // ── Middleware ─────────────────────────────────────────────────────────────
 
 export async function proxy(request: NextRequest) {
@@ -93,7 +101,10 @@ export async function proxy(request: NextRequest) {
 
   // ── 5. Auth routes: bounce logged-in users ─────────────────────────────
   if (user && matchesPrefix(pathname, AUTH_PREFIXES)) {
-    return NextResponse.redirect(new URL('/watchlist', request.url))
+    const rawNext = request.nextUrl.searchParams.get('next')
+    const safeNext = sanitizeNextParam(rawNext)
+    const redirectUrl = new URL(safeNext, new URL(request.url).origin)
+    return NextResponse.redirect(redirectUrl)
   }
 
   return addSecurityHeaders(response)

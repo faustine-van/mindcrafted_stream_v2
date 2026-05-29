@@ -57,13 +57,11 @@ export function TrendingSection({
         }),
       });
       if (!res.ok) {
-        console.error("Watchlist POST failed:", res.status);
         return;
       }
-      // Optimistically mark as added — no page refresh required.
       setAddedIds((prev) => [...prev, item.tmdbId]);
-    } catch (e) {
-      console.error("Watchlist POST error:", e);
+    } catch {
+      // silently ignore — button stays interactive for retry
     } finally {
       setLoadingId(null);
     }

@@ -6,7 +6,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Eye, EyeOff, ArrowRight, Film } from 'lucide-react'
 
-const BACKDROP = 'https://image.tmdb.org/t/p/w1280/tmU7GeKVybMWFButWEGl2M4GeiP.jpg'
+import { AUTH_BACKDROPS } from '../constants'
+
+const BACKDROP = AUTH_BACKDROPS.login
 
 const GoogleIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24">

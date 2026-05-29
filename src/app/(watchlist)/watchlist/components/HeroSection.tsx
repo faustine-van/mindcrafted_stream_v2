@@ -480,7 +480,7 @@ export function HeroSection({ featured, stats, items, existingIds = [], initialT
               } ${activeClass}`}
             >
               <Icon className="h-3.5 w-3.5 shrink-0" />
-              {isActive && <span>{label}</span>}
+              <span className={!isActive ? "hidden sm:inline" : ""}>{label}</span>
             </button>
           );
         })}
