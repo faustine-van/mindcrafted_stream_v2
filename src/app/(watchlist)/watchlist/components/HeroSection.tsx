@@ -474,10 +474,13 @@ export function HeroSection({ featured, stats, items, existingIds = [], initialT
               key={id}
               type="button"
               onClick={() => setActiveTab(id)}
-              className={`flex items-center gap-1.5 h-8 px-3 rounded-lg text-xs font-medium border transition-all duration-150 ${activeClass}`}
+              aria-label={label}
+              className={`flex items-center gap-1.5 h-8 rounded-lg text-xs font-medium border transition-all duration-150 ${
+                isActive ? "px-3" : "px-2.5"
+              } ${activeClass}`}
             >
               <Icon className="h-3.5 w-3.5 shrink-0" />
-              {label}
+              {isActive && <span>{label}</span>}
             </button>
           );
         })}

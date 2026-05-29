@@ -18,7 +18,7 @@ export function Footer({ isLoggedIn }: Props) {
                 A calm, focused watchlist for the things you love watching — and the ones still waiting their turn.
               </p>
             </div>
-            <div className="flex gap-12 text-xs text-muted-foreground">
+            <div className="flex flex-wrap gap-8 sm:gap-12 text-xs text-muted-foreground">
               <div className="space-y-2.5">
                 <p className="font-medium text-foreground">Product</p>
                 {isLoggedIn ? (

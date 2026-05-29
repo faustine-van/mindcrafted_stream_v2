@@ -154,10 +154,17 @@ export function AddItemModal({ open, onOpenChange, onAdded }: Props) {
 
     try {
       const formData = new FormData();
-      formData.set("query", selected.title);
+      formData.set("title", selected.title);
       formData.set("type", searchType);
       formData.set("status", status);
       formData.set("tmdb_id", selected.tmdbId);
+      formData.set("genre", selected.genre ?? "");
+      formData.set("year", selected.year ?? "");
+      formData.set("plot", selected.plot ?? "");
+      formData.set("poster", selected.poster ?? "");
+      formData.set("tmdb_rating", String(selected.tmdbRating ?? 0));
+      formData.set("rating", String(rating));
+      formData.set("favorite", String(favorite));
 
       const result = await addToWatchlist(formData);
       if (result?.error) throw new Error(result.error);
@@ -198,7 +205,7 @@ export function AddItemModal({ open, onOpenChange, onAdded }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[520px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[520px] max-h-[90vh] overflow-y-auto" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {step !== "search" && (
