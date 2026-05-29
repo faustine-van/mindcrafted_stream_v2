@@ -65,20 +65,19 @@ export function ItemDetailModal({ item, children, onUpdate, onDelete }: Props) {
   const [status,     setStatus]     = useState<WatchStatus>(item.status);
   const [rating,     setRating]     = useState(item.rating ?? 0);
   const [favorite,   setFavorite]   = useState(item.favorite ?? false);
-  // FIX: initialize from item.notes so existing notes show on open
   const [notes,      setNotes]      = useState(item.notes ?? "");
   const [isSaving,   setIsSaving]   = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
-  // Re-sync all local state each time the modal opens
   function handleOpenChange(val: boolean) {
     if (val) {
       setStatus(item.status);
       setRating(item.rating ?? 0);
       setFavorite(item.favorite ?? false);
-      // FIX: reset to saved notes, not empty string
       setNotes(item.notes ?? "");
     }
+    if (!val) setConfirmDelete(false);
     setOpen(val);
   }
 
@@ -120,7 +119,7 @@ export function ItemDetailModal({ item, children, onUpdate, onDelete }: Props) {
 
   /* ── Delete ── */
   async function handleDelete() {
-    if (!confirm(`Remove "${item.title}" from your watchlist?`)) return;
+    if (!confirmDelete) { setConfirmDelete(true); return; }
     setIsDeleting(true);
     try {
       await removeFromWatchlist(item.id);
@@ -131,6 +130,7 @@ export function ItemDetailModal({ item, children, onUpdate, onDelete }: Props) {
       toast.error("Could not remove item.");
     } finally {
       setIsDeleting(false);
+      setConfirmDelete(false);
     }
   }
 
@@ -318,17 +318,38 @@ export function ItemDetailModal({ item, children, onUpdate, onDelete }: Props) {
 
             {/* ── Footer actions ── */}
             <div className="px-6 py-4 border-t border-border/60 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className="h-9 px-3 rounded-lg text-destructive text-sm font-medium hover:bg-destructive/8 transition-colors disabled:opacity-50 flex items-center gap-1.5"
-              >
-                {isDeleting
-                  ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  : <Trash2 className="h-3.5 w-3.5" />}
-                {isDeleting ? "Removing…" : "Remove"}
-              </button>
+              <div className="flex items-center gap-2">
+                {confirmDelete ? (
+                  <>
+                    <span className="text-xs text-muted-foreground">Sure?</span>
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      disabled={isDeleting}
+                      className="h-9 px-3 rounded-lg bg-destructive text-destructive-foreground text-sm font-medium hover:bg-destructive/90 transition disabled:opacity-50 flex items-center gap-1.5"
+                    >
+                      {isDeleting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
+                      {isDeleting ? "Removing…" : "Yes, remove"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setConfirmDelete(false)}
+                      className="h-9 px-3 rounded-lg border border-border text-sm hover:bg-muted transition"
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleDelete}
+                    className="h-9 px-3 rounded-lg text-destructive text-sm font-medium hover:bg-destructive/10 transition flex items-center gap-1.5"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                    Remove
+                  </button>
+                )}
+              </div>
 
               <button
                 type="button"
