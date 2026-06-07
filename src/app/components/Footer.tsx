@@ -13,7 +13,9 @@ export function Footer({ isLoggedIn }: Props) {
         <ScrollReveal variant="fade-up">
           <div className="flex flex-col sm:flex-row items-start justify-between gap-8">
             <div className="space-y-2 max-w-xs">
-              <Logo />
+              <div className="w-36 sm:w-48">
+                <Logo />
+              </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 A calm, focused watchlist for the things you love watching — and the ones still waiting their turn.
               </p>
@@ -49,11 +51,10 @@ export function Footer({ isLoggedIn }: Props) {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+          <div className="mt-8 pt-6 border-t border-border flex flex-col items-center sm:flex-row sm:justify-between gap-3 text-xs text-muted-foreground text-center sm:text-left">
             <span>© {new Date().getFullYear()} Mindcrafted Stream. All rights reserved.</span>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
               <span>Free forever · No ads · No tracking</span>
-              <span className="hidden sm:inline text-border">·</span>
               <span>
                 Developed by{" "}
                 <a
