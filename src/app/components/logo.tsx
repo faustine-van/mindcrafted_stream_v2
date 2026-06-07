@@ -16,8 +16,8 @@ export function Logo() {
     <Image
       src={mounted && resolvedTheme === 'dark' ? logoDark : logoLight}
       alt="Mindcrafted Stream"
-      width={240}
-      height={48}
+      width={200}
+      height={40}
       priority
     />
   )

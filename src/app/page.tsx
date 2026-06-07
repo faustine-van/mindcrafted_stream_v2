@@ -9,6 +9,8 @@ import {
   TrendingUp,
   Heart,
   Plus,
+  LogIn,
+  UserPlus,
 } from "lucide-react";
 import { Logo } from "@/app/components/logo";
 import { createClient } from "@/lib/supabase/server";
@@ -78,16 +80,19 @@ export default async function LandingPage() {
               <div className="flex items-center gap-1 ml-1">
                 <Link
                   href="/login"
-                  className="inline-flex items-center h-8 sm:h-9 px-2.5 sm:px-3 rounded-lg text-xs sm:text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 h-9 px-2.5 sm:px-3 rounded-lg text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                  aria-label="Sign in"
                 >
-                  Sign in
+                  <LogIn className="h-4 w-4 shrink-0" />
+                  <span className="hidden sm:inline">Sign in</span>
                 </Link>
                 <Link
                   href="/signup"
-                  className="inline-flex items-center h-8 sm:h-9 px-3 sm:px-4 rounded-lg text-xs sm:text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition"
+                  className="inline-flex items-center justify-center gap-1.5 h-9 px-2.5 sm:px-4 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition"
+                  aria-label="Get started"
                 >
+                  <UserPlus className="h-4 w-4 shrink-0" />
                   <span className="hidden sm:inline">Get started</span>
-                  <span className="sm:hidden">Start</span>
                 </Link>
               </div>
             )}
