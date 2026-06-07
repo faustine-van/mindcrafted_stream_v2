@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import {
   Play,
-  CheckCircle2,
   Star,
   ArrowRight,
   Sparkles,
@@ -150,7 +149,7 @@ export default async function LandingPage() {
               <>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground mb-6">
                   <Sparkles className="h-3.5 w-3.5 text-violet-400" />
-                  Your personal stream — curated.
+                  Your watchlist, your way.
                 </span>
                 <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] mb-6">
                   Every film &amp; show,{" "}
